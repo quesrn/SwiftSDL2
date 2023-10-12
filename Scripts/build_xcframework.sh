@@ -7,7 +7,7 @@ git clone --recursive https://github.com/libsdl-org/SDL.git build/SDL
 
 pushd build/SDL
 
-git checkout release-2.26.5 --force
+git checkout release-2.28.4 --force
 
 COMMON_HEADER_FILES=(
 "SDL.h"
@@ -64,15 +64,15 @@ COMMON_HEADER_FILES=(
 "close_code.h"
 )
 
-mkdir -p "../Headers-macos"
-mkdir -p "../Headers-ios"
+mkdir -p "../Headers-macos/SDL2"
+mkdir -p "../Headers-ios/SDL2"
 for hFile in ${COMMON_HEADER_FILES[@]}; do
-  cp "include/${hFile}" "../Headers-macos"
-  cp "include/${hFile}" "../Headers-ios"
+  cp "include/${hFile}" "../Headers-macos/SDL2"
+  cp "include/${hFile}" "../Headers-ios/SDL2"
 done
 
-cp "include/SDL_config_macosx.h" "../Headers-macos"
-cp "include/SDL_config_iphoneos.h" "../Headers-ios"
+cp "include/SDL_config_macosx.h" "../Headers-macos/SDL2"
+cp "include/SDL_config_iphoneos.h" "../Headers-ios/SDL2"
 
 
 BUILD_DIR=".."
@@ -122,8 +122,8 @@ done
 MM_OUT_MACOS+="}\n"
 MM_OUT_IOS+="}\n"
 
-printf "%b" "${MM_OUT_MACOS}" > "../Headers-macos/module.modulemap"
-printf "%b" "${MM_OUT_IOS}" > "../Headers-ios/module.modulemap"
+printf "%b" "${MM_OUT_MACOS}" > "../Headers-macos/SDL2/module.modulemap"
+printf "%b" "${MM_OUT_IOS}" > "../Headers-ios/SDL2/module.modulemap"
 
 pushd Xcode/SDL
 
@@ -134,8 +134,8 @@ BUILD_DIR="../../.."
 xcodebuild archive -quiet ONLY_ACTIVE_ARCH=NO -scheme "Static Library" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-macosx/" -destination "generic/platform=macOS" BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
 xcodebuild archive -quiet ONLY_ACTIVE_ARCH=NO -scheme "Static Library-iOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-iphoneos/" -destination "generic/platform=iOS"  BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
 xcodebuild archive -quiet ONLY_ACTIVE_ARCH=NO -scheme "Static Library-iOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-iphonesimulator/" -destination "generic/platform=iOS Simulator"  BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
-xcodebuild archive -quiet ONLY_ACTIVE_ARCH=NO -scheme "Static Library-tvOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-appletvos/" -destination "generic/platform=tvOS"  BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
-xcodebuild archive -quiet ONLY_ACTIVE_ARCH=NO -scheme "Static Library-tvOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-appletvsimulator/" -destination "generic/platform=tvOS Simulator" BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
+#xcodebuild archive -quiet ONLY_ACTIVE_ARCH=NO -scheme "Static Library-tvOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-appletvos/" -destination "generic/platform=tvOS"  BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
+#xcodebuild archive -quiet ONLY_ACTIVE_ARCH=NO -scheme "Static Library-tvOS" -project "SDL.xcodeproj" -archivePath "${BUILD_DIR}/SDL-appletvsimulator/" -destination "generic/platform=tvOS Simulator" BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
 
 popd
 popd
@@ -148,13 +148,13 @@ rm -rdf "${BUILD_DIR}/SDL2.xcframework"
 # assemble xcframework
 xcodebuild -create-xcframework \
  	-library "${BUILD_DIR}/SDL-macosx.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-macos" \
+ 	-headers "${HEADERS_DIR}-macos/SDL2" \
  	-library "${BUILD_DIR}/SDL-iphoneos.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-ios" \
+ 	-headers "${HEADERS_DIR}-ios/SDL2" \
  	-library "${BUILD_DIR}/SDL-iphonesimulator.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-ios" \
+ 	-headers "${HEADERS_DIR}-ios/SDL2" \
  	-library "${BUILD_DIR}/SDL-appletvos.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-ios" \
+ 	-headers "${HEADERS_DIR}-ios/SDL2" \
  	-library "${BUILD_DIR}/SDL-appletvsimulator.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-ios" \
+ 	-headers "${HEADERS_DIR}-ios/SDL2" \
 	-output "${BUILD_DIR}/SDL2.xcframework"
