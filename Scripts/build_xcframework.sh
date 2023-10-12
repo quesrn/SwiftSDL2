@@ -153,8 +153,9 @@ xcodebuild -create-xcframework \
  	-headers "${HEADERS_DIR}-ios/SDL2" \
  	-library "${BUILD_DIR}/SDL-iphonesimulator.xcarchive/Products/usr/local/lib/libSDL2.a" \
  	-headers "${HEADERS_DIR}-ios/SDL2" \
- 	-library "${BUILD_DIR}/SDL-appletvos.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-ios/SDL2" \
- 	-library "${BUILD_DIR}/SDL-appletvsimulator.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-ios/SDL2" \
 	-output "${BUILD_DIR}/SDL2.xcframework"
+    
+#     -library "${BUILD_DIR}/SDL-appletvos.xcarchive/Products/usr/local/lib/libSDL2.a" \
+#     -headers "${HEADERS_DIR}-ios/SDL2" \
+#     -library "${BUILD_DIR}/SDL-appletvsimulator.xcarchive/Products/usr/local/lib/libSDL2.a" \
+#     -headers "${HEADERS_DIR}-ios/SDL2" \
