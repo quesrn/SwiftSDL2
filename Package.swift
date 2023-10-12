@@ -1,21 +1,20 @@
-// swift-tools-version:5.6
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
     name: "SDL",
     platforms: [
-        .macOS(.v11),
-        .iOS(.v13),
-        .tvOS(.v13),
+        .macOS(.v12),
+        .iOS(.v15),
+//        .tvOS(.v13),
     ],
     products: [
-        .library(name: "SDL",
-                 targets: ["SDL"]),
+        .library(name: "SDL", targets: ["SDL"]),
     ],
     targets: [
         .target(name: "SDL",
                 dependencies: [
-                    .target(name: "SDL2", condition: .when(platforms: [.macOS, .iOS, .tvOS])),
+                    .target(name: "SDL2", condition: .when(platforms: [.macOS, .iOS])), //, .tvOS])),
                     .target(name: "CSDL2", condition: .when(platforms: [.linux, .windows])),
                 ],
                 path: "Sources/SDL2"),
