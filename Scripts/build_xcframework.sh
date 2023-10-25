@@ -59,7 +59,7 @@ COMMON_HEADER_FILES=(
 "SDL_touch.h"
 "SDL_version.h"
 "SDL_video.h"
-"SDL_vulkan.h"
+#"SDL_vulkan.h"
 "begin_code.h"
 "close_code.h"
 )
