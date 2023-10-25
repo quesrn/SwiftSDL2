@@ -1,5 +1,7 @@
 module SDL2 {
     umbrella header "SDL.h"
+    header "SDL.h"
+    header "SDL_audio.h"
     export *
     exclude header "begin_code.h"
     exclude header "close_code.h"
