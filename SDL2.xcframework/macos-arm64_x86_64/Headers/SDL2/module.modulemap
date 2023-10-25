@@ -1,6 +1,8 @@
 module SDL2 {
     umbrella header "SDL.h"
     export *
+    exclude header "begin_code.h"
+    exclude header "close_code.h"
     link "SDL2"
     link framework "AudioToolbox"
     link framework "AVFoundation"
