@@ -1,5 +1,5 @@
 module SDL2 {
-    umbrella header "../SDL.h"
+    umbrella header "SDL.h"
     export *
     link "SDL2"
     link framework "AudioToolbox"
