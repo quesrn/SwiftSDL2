@@ -60,8 +60,8 @@ COMMON_HEADER_FILES=(
 "SDL_version.h"
 "SDL_video.h"
 #"SDL_vulkan.h"
-#"begin_code.h"
-#"close_code.h"
+"begin_code.h"
+"close_code.h"
 )
 
 mkdir -p "../Headers-macos/SDL2"
