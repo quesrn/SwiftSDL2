@@ -148,23 +148,26 @@ rm -rdf "${BUILD_DIR}/SDL2.xcframework"
 # assemble xcframework
 xcodebuild -create-xcframework \
  	-library "${BUILD_DIR}/SDL-macosx.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-macos/SDL2" \
+ 	-headers "${HEADERS_DIR}-macos" \
  	-library "${BUILD_DIR}/SDL-iphoneos.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-ios/SDL2" \
+ 	-headers "${HEADERS_DIR}-ios" \
  	-library "${BUILD_DIR}/SDL-iphonesimulator.xcarchive/Products/usr/local/lib/libSDL2.a" \
- 	-headers "${HEADERS_DIR}-ios/SDL2" \
+ 	-headers "${HEADERS_DIR}-ios" \
 	-output "${BUILD_DIR}/SDL2.xcframework"
 
-echo "Moving headers..."
-mkdir -p "${BUILD_DIR}/SDL2.xcframework/macos-arm64_x86_64/Headers/SDL2"
+rm -rdf "SDL2.xcframework"
+mv build/SDL2.xcframework .
+
+#echo "Moving headers..."
+#mkdir -p "${BUILD_DIR}/SDL2.xcframework/macos-arm64_x86_64/Headers/SDL2"
 #mv ${BUILD_DIR}/SDL2.xcframework/macos-arm64_x86_64/Headers/*.h ${BUILD_DIR}/SDL2.xcframework/macos-arm64_x86_64/Headers/SDL2/
-mv ${BUILD_DIR}/SDL2.xcframework/macos-arm64_x86_64/Headers/module.modulemap ${BUILD_DIR}/SDL2.xcframework/macos-arm64_x86_64/Headers/SDL2/
-mkdir -p "${BUILD_DIR}/SDL2.xcframework/ios-arm64/Headers/SDL2"
+#mv ${BUILD_DIR}/SDL2.xcframework/macos-arm64_x86_64/Headers/module.modulemap ${BUILD_DIR}/SDL2.xcframework/macos-arm64_x86_64/Headers/SDL2/
+#mkdir -p "${BUILD_DIR}/SDL2.xcframework/ios-arm64/Headers/SDL2"
 #mv ${BUILD_DIR}/SDL2.xcframework/ios-arm64/Headers/*.h ${BUILD_DIR}/SDL2.xcframework/ios-arm64/Headers/SDL2/
-mv ${BUILD_DIR}/SDL2.xcframework/ios-arm64/Headers/module.modulemap ${BUILD_DIR}/SDL2.xcframework/ios-arm64/Headers/SDL2/
-mkdir -p "${BUILD_DIR}/SDL2.xcframework/ios-arm64_x86_64-simulator/Headers/SDL2"
+#mv ${BUILD_DIR}/SDL2.xcframework/ios-arm64/Headers/module.modulemap ${BUILD_DIR}/SDL2.xcframework/ios-arm64/Headers/SDL2/
+#mkdir -p "${BUILD_DIR}/SDL2.xcframework/ios-arm64_x86_64-simulator/Headers/SDL2"
 #mv ${BUILD_DIR}/SDL2.xcframework/ios-arm64_x86_64-simulator/Headers/*.h ${BUILD_DIR}/SDL2.xcframework/ios-arm64_x86_64-simulator/Headers/SDL2/
-mv ${BUILD_DIR}/SDL2.xcframework/ios-arm64_x86_64-simulator/Headers/module.modulemap ${BUILD_DIR}/SDL2.xcframework/ios-arm64_x86_64-simulator/Headers/SDL2/
+#mv ${BUILD_DIR}/SDL2.xcframework/ios-arm64_x86_64-simulator/Headers/module.modulemap ${BUILD_DIR}/SDL2.xcframework/ios-arm64_x86_64-simulator/Headers/SDL2/
 
 #     -library "${BUILD_DIR}/SDL-appletvos.xcarchive/Products/usr/local/lib/libSDL2.a" \
 #     -headers "${HEADERS_DIR}-ios/SDL2" \
