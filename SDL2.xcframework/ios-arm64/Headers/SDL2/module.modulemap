@@ -16,5 +16,5 @@ module SDL2 {
     link framework "Metal"
     link framework "QuartzCore"
     link framework "OpenGLES"
-    link framework "UIKit"
+    // link framework "UIKit"
 }
