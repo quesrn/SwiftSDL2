@@ -92,8 +92,8 @@ COMMON_LINKED_FRAMEWORKS=(
 "QuartzCore"
 )
 
-MM_OUT_MACOS="module SDL2 {\n    umbrella header \"SDL.h\"\n    export *\n    module *\n    exclude header \"begin_code.h\"\n    exclude header \"close_code.h\"\n    link \"SDL2\"\n"
-MM_OUT_IOS="module SDL2 {\n    umbrella header \"SDL.h\"\n    export *\n    module *\n    exclude header \"begin_code.h\"\n    exclude header \"close_code.h\"\n    link \"SDL2\"\n"
+MM_OUT_MACOS="module SDL2 {\n    umbrella header \"SDL.h\"\n    export *\n    exclude header \"begin_code.h\"\n    exclude header \"close_code.h\"\n    link \"SDL2\"\n"
+MM_OUT_IOS="module SDL2 {\n    umbrella header \"SDL.h\"\n    export *\n    exclude header \"begin_code.h\"\n    exclude header \"close_code.h\"\n    link \"SDL2\"\n"
 
 for fw in ${COMMON_LINKED_FRAMEWORKS[@]}; do
 	MM_OUT_MACOS+="    link framework \"${fw}\"\n"

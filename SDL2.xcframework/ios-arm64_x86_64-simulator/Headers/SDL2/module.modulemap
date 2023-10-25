@@ -1,7 +1,6 @@
 module SDL2 {
     umbrella header "SDL.h"
     export *
-    module *
     exclude header "begin_code.h"
     exclude header "close_code.h"
     link "SDL2"
